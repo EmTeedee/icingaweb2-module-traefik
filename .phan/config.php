@@ -9,6 +9,7 @@
  * dependency. .phan/stubs declares minimal shapes for those so Phan can
  * resolve them; see .phan/stubs/icinga.php.
  */
+
 return [
     'target_php_version' => '7.4',
 

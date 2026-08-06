@@ -8,7 +8,7 @@
 
     <file>.</file>
     <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/.phan/stubs/*</exclude-pattern>
+    <exclude-pattern>*/.phan/*</exclude-pattern>
 
     <rule ref="PSR12"/>
 </ruleset>
