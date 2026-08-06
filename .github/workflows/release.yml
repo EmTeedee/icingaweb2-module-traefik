@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine version
+        id: version
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "version=${tag#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify module.info version matches tag
+        run: |
+          info_version=$(grep -oP '^Version:\s*\K.*' module.info | tr -d '\r')
+          if [ "$info_version" != "${{ steps.version.outputs.version }}" ]; then
+            echo "::error::module.info Version ($info_version) does not match tag ${{ steps.version.outputs.tag }}"
+            exit 1
+          fi
+
+      - name: Build module archive
+        run: |
+          set -e
+          pkg="icingaweb2-module-traefik-${{ steps.version.outputs.version }}"
+          mkdir "$pkg"
+          cp -r module.info run.php library doc README.md LICENSE.md "$pkg"/
+          tar -czf "${pkg}.tar.gz" "$pkg"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: icingaweb2-module-traefik-*.tar.gz
+          generate_release_notes: true

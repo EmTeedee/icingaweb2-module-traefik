@@ -1,4 +1,4 @@
-name: PHP Lint
+name: Validate
 
 on:
   push:
@@ -54,3 +54,25 @@ jobs:
 
       - name: Run PHP_CodeSniffer
         run: vendor/bin/phpcs
+
+  phan:
+    name: Phan static analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl, json, ast
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Run Phan
+        run: vendor/bin/phan
