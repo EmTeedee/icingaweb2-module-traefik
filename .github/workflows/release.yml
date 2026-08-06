@@ -40,7 +40,7 @@ jobs:
           tar -czf "${pkg}.tar.gz" "$pkg"
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: icingaweb2-module-traefik-*.tar.gz
           generate_release_notes: true
