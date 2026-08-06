@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="icingaweb2-module-traefik">
+    <description>Coding standard for the Traefik Icinga Web 2 module</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg value="p"/>
+
+    <file>library</file>
+    <file>run.php</file>
+
+    <rule ref="PSR12"/>
+</ruleset>

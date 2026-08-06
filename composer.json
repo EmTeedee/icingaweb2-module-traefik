@@ -1,0 +1,19 @@
+{
+    "name": "emteedee/icingaweb2-module-traefik",
+    "description": "Traefik API import source for Icinga Director",
+    "type": "icinga-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "EmTeedee"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.9"
+    }
+}

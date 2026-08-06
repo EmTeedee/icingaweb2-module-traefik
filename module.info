@@ -1,0 +1,7 @@
+Name: Traefik
+Version: 1.0.0
+Description: Traefik API import source for Icinga Director
+ Imports HTTP routers from one or more Traefik API endpoints (with optional
+ HTTP Basic Auth) as Icinga Director import rows: the router's FQDN becomes
+ the host name/address, and any Path/PathPrefix matchers become an
+ http_urls array property.
